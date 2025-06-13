@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { combineLatest, filter, forkJoin, map, mergeMap, Observable, of, switchMap, tap, timer } from 'rxjs';
+import { catchError, combineLatest, EMPTY, filter, forkJoin, map, mergeMap, Observable, of, switchMap, tap, timer } from 'rxjs';
 import { ClinicalTrial, FormattedStudyItem, StudyItem } from './clinical-trials.interface';
 import { toObservable } from '@angular/core/rxjs-interop';
 
@@ -58,7 +58,12 @@ export class ClinicalTrialsService {
     if (this.pollingEnabled()) {
       url.searchParams.set('pageSize', '1');
     }
-    return this.http.get<ClinicalTrial>(url.toString());
+    return this.http.get<ClinicalTrial>(url.toString()).pipe(
+      catchError(error => {
+        console.error('Failed to fetch trials', error);
+        return EMPTY;
+      })
+    );
   }
 
   private storeTokenAndTrials(response: ClinicalTrial) {

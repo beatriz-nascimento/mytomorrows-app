@@ -6,7 +6,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from '../app.routes';
 
-describe('ClinicalTrialsService (zone-less)', () => {
+describe('ClinicalTrialsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -60,7 +60,6 @@ describe('ClinicalTrialsService (zone-less)', () => {
 
       const req = httpMock.expectOne(r => r.url.includes('/studies'));
       req.error(new ErrorEvent('Network error'));
-
       expect(console.error).toHaveBeenCalledWith('Failed to fetch trials', jasmine.anything());
     }
   ));

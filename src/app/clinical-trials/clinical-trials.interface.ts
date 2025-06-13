@@ -15,6 +15,8 @@ export interface FormattedStudyItem {
   hasResults?: boolean;
   id?:string;
   favorite?: boolean; 
+  briefTitle?: string;
+  status?: string;
 }
 
 
