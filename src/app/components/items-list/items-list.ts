@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
-import { FormattedStudyItem } from '../../clinical-trials/clinical-trials.interface';
+import { FormattedStudyItem } from '../../pages/clinical-trials/clinical-trials.interface';
 import { Observable } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';

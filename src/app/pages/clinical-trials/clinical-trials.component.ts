@@ -3,17 +3,16 @@ import { ClinicalTrialsService } from './clinical-trials.service';
 import { CommonModule } from '@angular/common';
 import { FormattedStudyItem } from './clinical-trials.interface';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ItemsListComponent } from "../components/items-list/items-list";
+import { ItemsListComponent } from "../../components/items-list/items-list";
 
 @Component({
   selector: 'app-clinical-trials',
   imports: [CommonModule, MatSlideToggleModule, ItemsListComponent],
   templateUrl: './clinical-trials.html',
-  styleUrl: './clinical-trials.scss',
+  styles: '',
 })
 export class ClinicalTrials {
   private trialsService = inject(ClinicalTrialsService);
-  displayedColumns: string[] = ['select', 'id', 'name', 'status'];
   checked = this.trialsService.isPolling;
   dataSource$ = this.trialsService.clinicalTrialWithFavorite$;
 

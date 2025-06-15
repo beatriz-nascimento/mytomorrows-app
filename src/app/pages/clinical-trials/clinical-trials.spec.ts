@@ -1,54 +1,40 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { ClinicalTrialsService } from './clinical-trials.service';
-import { ClinicalTrial } from './clinical-trials.interface';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from '../app.routes';
+import { routes } from '../../app.routes';
+import { getDataFromAPIResponse } from '../../utils/mock-data';
+import { provideHttpClient } from '@angular/common/http';
 
-describe('ClinicalTrialsService', () => {
+describe('ClinicalTrialsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         ClinicalTrialsService,
+        provideHttpClient(),
+        provideHttpClientTesting(),
         provideZonelessChangeDetection(),
-          provideRouter(routes) ]
+        provideRouter(routes)]
     });
   });
 
   it('should fetch trials from API', inject(
     [ClinicalTrialsService, HttpTestingController],
     (service: ClinicalTrialsService, httpMock: HttpTestingController) => {
-      const mockResponse: ClinicalTrial = {
-        studies: [
-          {
-            protocolSection: {
-              identificationModule: {
-                nctId: 'NCT12345',
-                briefTitle: 'Test Trial'
-              },
-              statusModule: {
-                overallStatus: 'Completed'
-              }
-            }
-          }
-        ],
-        nextPageToken: 'token123'
-      };
 
       service['fetchTrialsFromAPI']().subscribe(response => {
         expect(response.studies.length).toBe(1);
-        expect(response.studies[0].protocolSection?.identificationModule?.nctId).toBe('NCT12345');
+        expect(response.studies[0].protocolSection?.identificationModule?.nctId).toBe('ID12');
       });
 
       const req = httpMock.expectOne(r => r.url.includes('/studies'));
       expect(req.request.method).toBe('GET');
-      req.flush(mockResponse);
+      req.flush(getDataFromAPIResponse);
     }
   ));
 
-  it('should handle fetch error gracefully', inject(
+  it('should handle fetch error', inject(
     [ClinicalTrialsService, HttpTestingController],
     (service: ClinicalTrialsService, httpMock: HttpTestingController) => {
       spyOn(console, 'error');
@@ -72,4 +58,5 @@ describe('ClinicalTrialsService', () => {
       expect(service['pollingEnabled']()).toBe(!initial);
     }
   ));
+
 });

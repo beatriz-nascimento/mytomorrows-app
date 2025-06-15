@@ -20,6 +20,7 @@ export class ClinicalTrialsService {
   public isPolling = computed(() => this.pollingEnabled())
 
   private clinicalTrialsList$ = toObservable(this.pollingEnabled).pipe(
+    tap(a => console.log(a, 'clinical trials list')),
     switchMap((isEnabled) => isEnabled ? this.handlePollingEnabled() : this.handlePollingDisabled())
   );
 
@@ -113,7 +114,7 @@ export class ClinicalTrialsService {
     )
   );
 
-  private getClinicalTrialById(id: string) {
+  public getClinicalTrialById(id: string) {
     return this.http.get<StudyItem>(`${this.apiUrl}/${id}`).pipe(
       map(study =>
       ({

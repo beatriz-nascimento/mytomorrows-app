@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItemsListComponent } from './items-list';
-import { FormattedStudyItem } from '../../clinical-trials/clinical-trials.interface';
+import { FormattedStudyItem } from '../../pages/clinical-trials/clinical-trials.interface';
 import { Observable, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';
@@ -24,7 +24,6 @@ describe('ItemsListComponent', () => {
     fixture = TestBed.createComponent(ItemsListComponent);
     component = fixture.componentInstance;
     component.items$ = mockItems$;
-    fixture.detectChanges();
   });
 
   it('should create component', () => {
