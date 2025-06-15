@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ClinicalTrialsService } from './clinical-trials.service';
+import { ClinicalTrialsService } from '../../components/services/clinical-trials.service';
 import { CommonModule } from '@angular/common';
 import { FormattedStudyItem } from './clinical-trials.interface';
-import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ItemsListComponent } from "../../components/items-list/items-list";
 
 @Component({
@@ -20,8 +20,7 @@ export class ClinicalTrials {
     this.trialsService.toggleFavorites(row)
   }
 
-  toggleChanges(event: MatSlideToggleChange) {
-    console.log(event, 'toggle')
+  toggleChanges() {
     this.trialsService.togglePolling()
   }
 

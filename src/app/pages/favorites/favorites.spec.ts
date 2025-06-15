@@ -3,7 +3,7 @@ import { FavoritesComponent } from './favorites.component';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { ClinicalTrialsService } from '../clinical-trials/clinical-trials.service';
+import { ClinicalTrialsService } from '../../components/services/clinical-trials.service';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { favoriteTrial, mockClinicalTrialsList, mockStudy } from '../../utils/mock-data';

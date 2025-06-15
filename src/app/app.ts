@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { RouterOutlet } from '@angular/router';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule, RouterModule],
+  imports: [RouterOutlet, NavigationComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemsListComponent } from '../../components/items-list/items-list';
-import { ClinicalTrialsService } from '../clinical-trials/clinical-trials.service';
+import { ClinicalTrialsService } from '../../components/services/clinical-trials.service';
 import { FormattedStudyItem } from '../clinical-trials/clinical-trials.interface';
 
 @Component({

@@ -1,5 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { ClinicalTrialsService } from './clinical-trials.service';
+import { ClinicalTrialsService } from '../../components/services/clinical-trials.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';

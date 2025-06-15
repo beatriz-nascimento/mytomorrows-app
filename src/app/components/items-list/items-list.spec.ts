@@ -1,29 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItemsListComponent } from './items-list';
-import { FormattedStudyItem } from '../../pages/clinical-trials/clinical-trials.interface';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { listOfFavorites } from '../../utils/mock-data';
 
 describe('ItemsListComponent', () => {
   let fixture: ComponentFixture<ItemsListComponent>;
   let component: ItemsListComponent;
 
-  const mockItems$: Observable<FormattedStudyItem[]> = of([
-    { id: 'NCT001', favorite: true, briefTitle: 'Trial A', status: 'Completed' },
-    { id: 'NCT002', favorite: false, briefTitle: 'Trial B', status: 'Recruiting' }
-  ]);
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ItemsListComponent],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         provideZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ItemsListComponent);
     component = fixture.componentInstance;
-    component.items$ = mockItems$;
+    component.items$ = of(listOfFavorites);
+
+  fixture.detectChanges();
+
   });
 
   it('should create component', () => {
@@ -39,9 +41,9 @@ describe('ItemsListComponent', () => {
     const cells = fixture.debugElement.queryAll(By.css('td.mat-mdc-cell'));
     const cellTexts = cells.map(c => c.nativeElement.textContent.trim());
 
-    expect(cellTexts).toContain('NCT001');
+    expect(cellTexts).toContain('ID01');
     expect(cellTexts).toContain('Trial A');
-    expect(cellTexts).toContain('NCT002');
+    expect(cellTexts).toContain('ID02');
     expect(cellTexts).toContain('Trial B');
   });
 
@@ -56,7 +58,7 @@ describe('ItemsListComponent', () => {
     const button = fixture.debugElement.queryAll(By.css('button'))[1]; 
     button.triggerEventHandler('click', new MouseEvent('click'));
     expect(component.toggleFavorites.emit).toHaveBeenCalledWith({
-      id: 'NCT002',
+      id: 'ID02',
       favorite: false,
       briefTitle: 'Trial B',
       status: 'Recruiting'

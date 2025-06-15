@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { catchError, combineLatest, EMPTY, filter, forkJoin, map, mergeMap, Observable, of, switchMap, tap, timer } from 'rxjs';
-import { ClinicalTrial, FormattedStudyItem, StudyItem } from './clinical-trials.interface';
+import { ClinicalTrial, FormattedStudyItem, StudyItem } from '../../pages/clinical-trials/clinical-trials.interface';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -18,9 +18,9 @@ export class ClinicalTrialsService {
   private clinicalTrials: WritableSignal<ClinicalTrial> = signal({ studies: [], nextPageToken: '' })
   private nextPageToken = signal<string | null>(null);
   public isPolling = computed(() => this.pollingEnabled())
+  public favoriteItemsLength = computed(()=> (this.selectedItems().length || 0) )
 
   private clinicalTrialsList$ = toObservable(this.pollingEnabled).pipe(
-    tap(a => console.log(a, 'clinical trials list')),
     switchMap((isEnabled) => isEnabled ? this.handlePollingEnabled() : this.handlePollingDisabled())
   );
 
@@ -128,7 +128,7 @@ export class ClinicalTrialsService {
 
   public favoriteTrials$ = this.favoritesIds$.pipe(
     filter(ids => Array.isArray(ids)),
-    map(ids => ids.filter((id): id is string => typeof id === 'string')),
+    map(ids => ids.filter(id => typeof id === 'string')),
     mergeMap((validIds: string[]) =>
       validIds.length > 0
         ? forkJoin(validIds.map(id => this.getClinicalTrialById(id)))

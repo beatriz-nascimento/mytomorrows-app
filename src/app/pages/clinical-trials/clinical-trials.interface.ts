@@ -10,6 +10,7 @@ export interface FormattedStudyItem {
   id?:string;
   favorite?: boolean; 
   briefTitle?: string;
+  status?: string; 
 }
 
 export interface StudyItem {

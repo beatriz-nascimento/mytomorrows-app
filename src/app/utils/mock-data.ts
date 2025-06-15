@@ -1,4 +1,4 @@
-import { ClinicalTrial } from "../pages/clinical-trials/clinical-trials.interface";
+import { ClinicalTrial, FormattedStudyItem } from "../pages/clinical-trials/clinical-trials.interface";
 
 export const getDataFromAPIResponse: ClinicalTrial = {
     studies: [
@@ -23,6 +23,11 @@ export const favoriteTrial = {
     briefTitle: 'Test Fav Trial',
     status: 'Recruiting'
 };
+
+ export const listOfFavorites: FormattedStudyItem[] = [
+    { id: 'ID01', favorite: true, briefTitle: 'Trial A', status: 'Completed' },
+    { id: 'ID02', favorite: false, briefTitle: 'Trial B', status: 'Recruiting' }
+  ];
 
 
 export const mockClinicalTrialsList = (numberOfItems: number) => {
