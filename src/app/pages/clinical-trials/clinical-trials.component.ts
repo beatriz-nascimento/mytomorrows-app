@@ -3,7 +3,7 @@ import { ClinicalTrialsService } from '../../components/services/clinical-trials
 import { CommonModule } from '@angular/common';
 import { FormattedStudyItem } from './clinical-trials.interface';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ItemsListComponent } from "../../components/items-list/items-list";
+import { ItemsListComponent } from "../../components/items-list/items-list.component";
 
 @Component({
   selector: 'app-clinical-trials',

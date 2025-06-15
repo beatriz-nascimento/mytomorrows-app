@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ItemsListComponent } from './items-list';
+import { ItemsListComponent } from './items-list.component';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';

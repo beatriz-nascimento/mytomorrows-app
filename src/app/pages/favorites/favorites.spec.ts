@@ -7,7 +7,7 @@ import { ClinicalTrialsService } from '../../components/services/clinical-trials
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { favoriteTrial, mockClinicalTrialsList, mockStudy } from '../../utils/mock-data';
-import { ItemsListComponent } from '../../components/items-list/items-list';
+import { ItemsListComponent } from '../../components/items-list/items-list.component';
 describe('Favorites Component', () => {
     let component: FavoritesComponent;
     let fixture: ComponentFixture<FavoritesComponent>;

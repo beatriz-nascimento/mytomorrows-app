@@ -1,6 +1,11 @@
 # Clinical Trials Assignment - Frontend Developer 
 
-This is an Angular application built for the myTomorrows frontend engineering assignment. It fetches clinical trials from the [clinicaltrials.gov](https://clinicaltrials.gov/) API and allows users to view and manage a list of trials and favorites.
+Angular application built for the myTomorrows frontend assignment. 
+It fetches clinical trials from the [clinicaltrials.gov](https://clinicaltrials.gov/) API and allows users to view and manage a list of trials and favorites.
+
+---
+
+## Application available in [https://github.com/beatriz-nascimento/mytomorrows-app]
 
 ---
 
@@ -12,7 +17,7 @@ This is an Angular application built for the myTomorrows frontend engineering as
 - Maintains a maximum of 10 trials in the list
 - Add/remove multiple trials as favorites
 - View favorite trials on a separate route page
-- Implemented tests and linter 
+- Implemented tests and linter in production pipeline 
 
 ---
 
@@ -33,3 +38,12 @@ npm install
 ## Execute Application 
 
 npm start 
+
+## Test Application 
+
+npm test 
+
+---
+
+
+Any question please send me an [e-mail](mailto:beatrizn.nascimento@gmail.com)

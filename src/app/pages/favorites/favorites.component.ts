@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemsListComponent } from '../../components/items-list/items-list';
+import { ItemsListComponent } from '../../components/items-list/items-list.component';
 import { ClinicalTrialsService } from '../../components/services/clinical-trials.service';
 import { FormattedStudyItem } from '../clinical-trials/clinical-trials.interface';
 
